@@ -74,7 +74,8 @@ namespace Odds_Grabber___dafa888.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0-0.5|0.25\r\n0.5-1|0.75\r\n1-1.5|1.25\r\n1.5-2|1.75\r\n2-2.5|2.25\r\n2.5-3|2.75\r\n3-3.5|3.2" +
-            "5\r\n3.5-4|3.75\r\n4-4.5|4.25\r\n4.5-5|4.75\r\n5-5.5|5.25\r\n5.5-6|5.75")]
+            "5\r\n3.5-4|3.75\r\n4-4.5|4.25\r\n4.5-5|4.75\r\n5-5.5|5.25\r\n5.5-6|5.75\r\n6-6.5|6.25\r\n6.5-7" +
+            "|6.75\r\n7-7.5|7.25\r\n7.5-8|7.75\r\n8.5-9|8.25")]
         public string ______odds {
             get {
                 return ((string)(this["______odds"]));

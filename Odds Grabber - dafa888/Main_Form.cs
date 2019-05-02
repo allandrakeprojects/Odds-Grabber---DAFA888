@@ -604,30 +604,39 @@ namespace Odds_Grabber___dafa888
                     {
                         if (args.Frame.IsMain)
                         {
-                            Invoke(new Action(async () =>
-                            {
-                                if (first == 0)
-                                {
-                                    first++;
-                                    __is_login = true;
-                                    panel_cefsharp.Visible = false;
-                                    pictureBox_loader.Visible = true;
 
-                                    SendABCTeam("Firing up!");
-                                    await ___TaskWait_Handler(10);
-                                    Task task_01 = new Task(delegate { ___FIRST_RUNNINGAsync(); });
-                                    task_01.Start();
+                            chromeBrowser.GetSourceAsync().ContinueWith(taskHtml =>
+                            {
+                                string html = taskHtml.Result.ToLower();
+
+                                if (html.Contains("restricted page"))
+                                {
+                                    SendABCTeam("Please setup first VPN to the installed PC.");
+                                    __is_close = false;
+                                    Environment.Exit(0);
                                 }
-                            }));
+                                else
+                                {
+                                    Invoke(new Action(async () =>
+                                    {
+                                        if (first == 0)
+                                        {
+                                            first++;
+                                            __is_login = true;
+                                            panel_cefsharp.Visible = false;
+                                            pictureBox_loader.Visible = true;
+
+                                            SendABCTeam("Firing up!");
+                                            await ___TaskWait_Handler(10);
+                                            Task task_01 = new Task(delegate { ___FIRST_RUNNINGAsync(); });
+                                            task_01.Start();
+                                        }
+                                    }));
+                                }
+                            });
                         }
                     };
                 }));
-            }
-            else if (e.Address.ToString().Contains("forbidden"))
-            {
-                SendABCTeam("Please setup first VPN to the installed PC.");
-                __is_close = false;
-                Environment.Exit(0);
             }
         }
 

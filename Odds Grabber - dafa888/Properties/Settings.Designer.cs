@@ -73,15 +73,60 @@ namespace Odds_Grabber___dafa888.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0-0.5|0.25\r\n0.5-1|0.75\r\n1-1.5|1.25\r\n1.5-2|1.75\r\n2-2.5|2.25\r\n2.5-3|2.75\r\n3-3.5|3.2" +
-            "5\r\n3.5-4|3.75\r\n4-4.5|4.25\r\n4.5-5|4.75\r\n5-5.5|5.25\r\n5.5-6|5.75\r\n6-6.5|6.25\r\n6.5-7" +
-            "|6.75\r\n7-7.5|7.25\r\n7.5-8|7.75\r\n8.5-9|8.25")]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"0-0.5|0.25
+0.5-1|0.75
+1-1.5|1.25
+1.5-2|1.75
+2-2.5|2.25
+2.5-3|2.75
+3-3.5|3.25
+3.5-4|3.75
+4-4.5|4.25
+4.5-5|4.75
+5-5.5|5.25
+5.5-6|5.75
+6-6.5|6.25
+6.5-7|6.75
+7-7.5|7.25
+7.5-8|7.75
+8-8.5|8.25
+8.5-9|8.75
+9-9.5|9.25
+9.5-10|9.75
+10-10.5|10.25
+10.5-11|10.75
+11-11.5|11.25
+11.5-12|11.75")]
         public string ______odds {
             get {
                 return ((string)(this["______odds"]));
             }
             set {
                 this["______odds"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("02813ed4183fb4f1e73d7a758695418d")]
+        public string ______hash {
+            get {
+                return ((string)(this["______hash"]));
+            }
+            set {
+                this["______hash"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ______is_send_telegram {
+            get {
+                return ((bool)(this["______is_send_telegram"]));
+            }
+            set {
+                this["______is_send_telegram"] = value;
             }
         }
     }

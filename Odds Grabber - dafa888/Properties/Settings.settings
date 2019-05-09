@@ -31,7 +31,20 @@
 6.5-7|6.75
 7-7.5|7.25
 7.5-8|7.75
-8.5-9|8.25</Value>
+8-8.5|8.25
+8.5-9|8.75
+9-9.5|9.25
+9.5-10|9.75
+10-10.5|10.25
+10.5-11|10.75
+11-11.5|11.25
+11.5-12|11.75</Value>
+    </Setting>
+    <Setting Name="______hash" Type="System.String" Scope="User">
+      <Value Profile="(Default)">02813ed4183fb4f1e73d7a758695418d</Value>
+    </Setting>
+    <Setting Name="______is_send_telegram" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
 </SettingsFile>

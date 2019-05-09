@@ -13,6 +13,7 @@ using System.Net;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -33,13 +34,13 @@ namespace Odds_Grabber___dafa888
         private string __running_02 = "";
         private string __running_11 = "";
         private string __running_22 = "";
+        private string __hash = "";
         private int __send = 0;
         private int __r = 255;
         private int __g = 224;
         private int __b = 0;
         private bool __is_close;
         private bool __is_login = false;
-        private bool __is_send = false;
         private bool __m_aeroEnabled;
         Form __mainFormHandler;
 
@@ -324,15 +325,17 @@ namespace Odds_Grabber___dafa888
 
         private void panel1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            if (__is_send)
+            if (Properties.Settings.Default.______is_send_telegram)
             {
-                __is_send = false;
-                MessageBox.Show("Telegram Notification is Disabled.", __brand_code + " " + __app, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Properties.Settings.Default.______is_send_telegram = false;
+                Properties.Settings.Default.Save();
+                MessageBox.Show("Telegram Notification is Disabled.", __app__website_name, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                __is_send = true;
-                MessageBox.Show("Telegram Notification is Enabled.", __brand_code + " " + __app, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Properties.Settings.Default.______is_send_telegram = true;
+                Properties.Settings.Default.Save();
+                MessageBox.Show("Telegram Notification is Enabled.", __app__website_name, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -415,48 +418,51 @@ namespace Odds_Grabber___dafa888
 
         private void SendABCTeam(string message)
         {
-            try
+            if (Properties.Settings.Default.______is_send_telegram)
             {
-                string datetime = DateTime.Now.ToString("dd MMM HH:mm:ss");
-                string urlString = "https://api.telegram.org/bot{0}/sendMessage?chat_id={1}&text={2}";
-                string apiToken = "651945130:AAGMFj-C4wX0yElG2dBU1SRbfrNZi75jPHg";
-                string chatId = "@odds_bot_abc_team";
-                string text = "Bot:%20-----" + __website_name.ToUpper() + "-----%0ADate%20and%20Time:%20[" + datetime + "]%0AMessage:%20<b>" + message + "</>&parse_mode=html";
-                urlString = String.Format(urlString, apiToken, chatId, text);
-                WebRequest request = WebRequest.Create(urlString);
-                Stream rs = request.GetResponse().GetResponseStream();
-                StreamReader reader = new StreamReader(rs);
-                string line = "";
-                StringBuilder sb = new StringBuilder();
-                while (line != null)
+                try
                 {
-                    line = reader.ReadLine();
-                    if (line != null)
-                        sb.Append(line);
-                }
-                __send = 0;
-            }
-            catch (Exception err)
-            {
-                __send++;
-
-                if (___CheckForInternetConnection())
-                {
-                    if (__send == 5)
+                    string datetime = DateTime.Now.ToString("dd MMM HH:mm:ss");
+                    string urlString = "https://api.telegram.org/bot{0}/sendMessage?chat_id={1}&text={2}";
+                    string apiToken = "651945130:AAGMFj-C4wX0yElG2dBU1SRbfrNZi75jPHg";
+                    string chatId = "@odds_bot_abc_team";
+                    string text = "Bot:%20-----" + __website_name.ToUpper() + "-----%0ADate%20and%20Time:%20[" + datetime + "]%0AMessage:%20<b>" + message + "</>&parse_mode=html";
+                    urlString = String.Format(urlString, apiToken, chatId, text);
+                    WebRequest request = WebRequest.Create(urlString);
+                    Stream rs = request.GetResponse().GetResponseStream();
+                    StreamReader reader = new StreamReader(rs);
+                    string line = "";
+                    StringBuilder sb = new StringBuilder();
+                    while (line != null)
                     {
-                        __Flag();
-                        __is_close = false;
-                        Environment.Exit(0);
+                        line = reader.ReadLine();
+                        if (line != null)
+                            sb.Append(line);
+                    }
+                    __send = 0;
+                }
+                catch (Exception err)
+                {
+                    __send++;
+
+                    if (___CheckForInternetConnection())
+                    {
+                        if (__send == 5)
+                        {
+                            __Flag();
+                            __is_close = false;
+                            Environment.Exit(0);
+                        }
+                        else
+                        {
+                            SendABCTeam(message);
+                        }
                     }
                     else
                     {
-                        SendABCTeam(message);
+                        __is_close = false;
+                        Environment.Exit(0);
                     }
-                }
-                else
-                {
-                    __is_close = false;
-                    Environment.Exit(0);
                 }
             }
         }
@@ -612,6 +618,7 @@ namespace Odds_Grabber___dafa888
                                 if (html.Contains("restricted page"))
                                 {
                                     SendABCTeam("Please setup first VPN to the installed PC.");
+                                    MessageBox.Show("Please setup first VPN to this PC.", __app__website_name, MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     __is_close = false;
                                     Environment.Exit(0);
                                 }
@@ -623,8 +630,8 @@ namespace Odds_Grabber___dafa888
                                         {
                                             first++;
                                             __is_login = true;
-                                            panel_cefsharp.Visible = false;
-                                            pictureBox_loader.Visible = true;
+                                            //panel_cefsharp.Visible = false;
+                                            //pictureBox_loader.Visible = true;
 
                                             SendABCTeam("Firing up!");
                                             await ___TaskWait_Handler(10);
@@ -662,7 +669,11 @@ namespace Odds_Grabber___dafa888
                 wc.Encoding = Encoding.UTF8;
                 wc.Headers.Add("Content-Type", "application/x-www-form-urlencoded");
                 int _epoch = (int)(DateTime.UtcNow - new DateTime(1970, 1, 1)).TotalSeconds;
-                byte[] result = await wc.DownloadDataTaskAsync("https://als.sportdafa.net/xapi/rest/events?hash=57767535ba5573e31334f13ab937f942&l=en");
+                if (String.IsNullOrEmpty(__hash))
+                {
+                    __hash = Properties.Settings.Default.______hash.ToString();
+                }
+                byte[] result = await wc.DownloadDataTaskAsync("https://als.sportdafa.net/xapi/rest/events?hash=" + __hash + "&l=en");
                 string responsebody = Encoding.UTF8.GetString(result);
                 var deserializeObject = JsonConvert.DeserializeObject(responsebody);
                 
@@ -1043,14 +1054,15 @@ namespace Odds_Grabber___dafa888
                 }
 
                 // send dafa888 
-                //if (!Properties.Settings.Default.______odds_iswaiting_01 && Properties.Settings.Default.______odds_issend_01)
-                //{
-                //    Properties.Settings.Default.______odds_issend_01 = false;
-                //    Properties.Settings.Default.Save();
+                if (Properties.Settings.Default.______odds_issend_01)
+                {
+                    Properties.Settings.Default.______odds_issend_01 = false;
+                    Properties.Settings.Default.Save();
 
-                //    SendABCTeam(__running_11 + " Back to Normal.");
-                //}
+                    SendABCTeam(__running_11 + " Back to Normal.");
+                }
 
+                // comment detect
                 //Properties.Settings.Default.______odds_iswaiting_01 = false;
                 //Properties.Settings.Default.Save();
 
@@ -1069,7 +1081,21 @@ namespace Odds_Grabber___dafa888
                 {
                     if (err.ToString().ToLower().Contains("401"))
                     {
-                        chromeBrowser.Load("https://www.sportdafa.net/en/sports-df/sports");
+                        __send++;
+                        if (__send == 1)
+                        {
+                            //SendMyBot("401");
+                            ___FIRST_RUNNINGAsync();
+                        }
+                        else if (__send == 5)
+                        {
+                            __is_close = false;
+                            Environment.Exit(0);
+                        }
+                        else
+                        {
+                            chromeBrowser.Load("https://www.sportdafa.net/en/sports-df/sports");
+                        }
                     }
                     else
                     {
@@ -1079,6 +1105,7 @@ namespace Odds_Grabber___dafa888
                             if (html.Contains("dear user"))
                             {
                                 SendABCTeam("Please setup first VPN to the installed PC.");
+                                MessageBox.Show("Please setup first VPN to this PC.", __app__website_name, MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 __is_close = false;
                                 Environment.Exit(0);
                             }
@@ -1166,10 +1193,16 @@ namespace Odds_Grabber___dafa888
 
         private string ___Odds(string odds)
         {
+            odds = Regex.Replace(odds, "[^0-9.-]", "").Trim();
+
             if (odds.ToString().Trim().Contains("-"))
             {
+                string ______odds = "0-0.5|0.25\r\n0.5-1|0.75\r\n1-1.5|1.25\r\n1.5-2|1.75\r\n2-2.5|2.25\r\n2.5-3|2.75\r\n3-3.5|3.2" +
+                                    "5\r\n3.5-4|3.75\r\n4-4.5|4.25\r\n4.5-5|4.75\r\n5-5.5|5.25\r\n5.5-6|5.75\r\n6-6.5|6.25\r\n6.5-7" +
+                                    "|6.75\r\n7-7.5|7.25\r\n7.5-8|7.75\r\n8-8.5|8.25\r\n8.5-9|8.75\r\n9-9.5|9.25\r\n9.5-10|9.75" +
+                                    "\r\n10-10.5|10.25\r\n10.5-11|10.75\r\n11-11.5|11.25\r\n11.5-12|11.75";
                 bool _detect = false;
-                string[] _odds = Properties.Settings.Default.______odds.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
+                string[] _odds = ______odds.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
                 foreach (var _odd in _odds)
                 {
                     String[] _odds_replace = _odd.ToString().Split(new string[] { "|" }, StringSplitOptions.None);

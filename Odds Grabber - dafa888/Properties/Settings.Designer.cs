@@ -120,7 +120,7 @@ namespace Odds_Grabber___dafa888.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool ______is_send_telegram {
             get {
                 return ((bool)(this["______is_send_telegram"]));

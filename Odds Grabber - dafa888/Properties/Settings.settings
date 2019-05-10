@@ -44,7 +44,7 @@
       <Value Profile="(Default)">02813ed4183fb4f1e73d7a758695418d</Value>
     </Setting>
     <Setting Name="______is_send_telegram" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+      <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>
 </SettingsFile>

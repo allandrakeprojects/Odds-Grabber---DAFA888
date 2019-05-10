@@ -414,7 +414,7 @@ namespace Odds_Grabber___dafa888
                 }
                 else
                 {
-                    MessageBox.Show("No Internet Connection Detected.\nLine number: " + LineNumber(), __app__website_name, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    SendMyBot("No Internet Connection Detected.\nLine number: " + LineNumber());
                     __is_close = false;
                     Environment.Exit(0);
                 }
@@ -465,7 +465,7 @@ namespace Odds_Grabber___dafa888
                     }
                     else
                     {
-                        MessageBox.Show("No Internet Connection Detected.\nLine number: " + LineNumber(), __app__website_name, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        SendMyBot("No Internet Connection Detected.\nLine number: " + LineNumber());
                         __is_close = false;
                         Environment.Exit(0);
                     }
@@ -544,7 +544,7 @@ namespace Odds_Grabber___dafa888
                 }
                 else
                 {
-                    MessageBox.Show("No Internet Connection Detected.\nLine number: " + LineNumber(), __app__website_name, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    SendMyBot("No Internet Connection Detected.\nLine number: " + LineNumber());
                     __is_close = false;
                     Environment.Exit(0);
                 }
@@ -598,7 +598,7 @@ namespace Odds_Grabber___dafa888
                 }
                 else
                 {
-                    MessageBox.Show("No Internet Connection Detected.\nLine number: " + LineNumber(), __app__website_name, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    SendMyBot("No Internet Connection Detected.\nLine number: " + LineNumber());
                     __is_close = false;
                     Environment.Exit(0);
                 }
@@ -995,7 +995,7 @@ namespace Odds_Grabber___dafa888
                             }
                             else
                             {
-                                MessageBox.Show("No Internet Connection Detected.\nLine number: " + LineNumber(), __app__website_name, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                SendMyBot("No Internet Connection Detected.\nLine number: " + LineNumber());
                                 __is_close = false;
                                 Environment.Exit(0);
                             }
@@ -1034,7 +1034,7 @@ namespace Odds_Grabber___dafa888
                 }
                 else
                 {
-                    MessageBox.Show("No Internet Connection Detected.\nLine number: " + LineNumber(), __app__website_name, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    SendMyBot("No Internet Connection Detected.\nLine number: " + LineNumber());
                     __is_close = false;
                     Environment.Exit(0);
                 }
@@ -1309,7 +1309,7 @@ namespace Odds_Grabber___dafa888
                             }
                             else
                             {
-                                MessageBox.Show("No Internet Connection Detected.\nLine number: " + LineNumber(), __app__website_name, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                SendMyBot("No Internet Connection Detected.\nLine number: " + LineNumber());
                                 __is_close = false;
                                 Environment.Exit(0);
                             }
@@ -1367,7 +1367,7 @@ namespace Odds_Grabber___dafa888
                 }
                 else
                 {
-                    MessageBox.Show("No Internet Connection Detected.\nLine number: " + LineNumber(), __app__website_name, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    SendMyBot("No Internet Connection Detected.\nLine number: " + LineNumber());
                     __is_close = false;
                     Environment.Exit(0);
                 }

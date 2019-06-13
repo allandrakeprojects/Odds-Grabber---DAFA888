@@ -34,6 +34,15 @@ namespace Odds_Grabber___dafa888
         private string __running_11 = "Dafabet";
         private string __app_detect_running = "DAFA888";
         private string __local_ip = "";
+        // Settings
+        private string __root_url = "";
+        private string __root_url_equals = "";
+        private string __root_url_login = "";
+        private string __DAFA_running = "";
+        private string __DAFA_not_running = "";
+        private string __username = "";
+        private string __password = "";
+        // End of Settings
         private int __send = 0;
         private int __r = 255;
         private int __g = 224;
@@ -142,6 +151,18 @@ namespace Odds_Grabber___dafa888
         public Main_Form()
         {
             InitializeComponent();
+
+            // Settings
+            __root_url = Properties.Settings.Default.______root_url.ToString().Replace("amp;", "");
+            __root_url_equals = Properties.Settings.Default.______root_url_equals.ToString().Replace("amp;", "");
+            __root_url_login = Properties.Settings.Default.______root_url_login.ToString().Replace("amp;", "");
+            __DAFA_running = Properties.Settings.Default.______DAFA_running.ToString().Replace("amp;", "");
+            __DAFA_not_running = Properties.Settings.Default.______DAFA_not_running.ToString().Replace("amp;", "");
+            __username = Properties.Settings.Default.______username.ToString().Replace("amp;", "");
+            __password = Properties.Settings.Default.______password.ToString().Replace("amp;", "");
+
+            //MessageBox.Show(Properties.Settings.Default.______is_send_telegram.ToString() + "\n" + __root_url + "\n" + __root_url_equals + "\n" + __root_url_login + "\n" + __DAFA_running + "\n" + __DAFA_not_running + "\n" + __username + "\n" + __password);
+            // End of Settings
 
             timer_landing.Start();
         }
@@ -607,7 +628,7 @@ namespace Odds_Grabber___dafa888
 
             settings.CachePath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\CEF";
             Cef.Initialize(settings);
-            chromeBrowser = new ChromiumWebBrowser("http://sg88win.com/");
+            chromeBrowser = new ChromiumWebBrowser(__root_url);
             panel_cefsharp.Controls.Add(chromeBrowser);
             chromeBrowser.AddressChanged += ChromiumBrowserAddressChanged;
         }
@@ -622,7 +643,7 @@ namespace Odds_Grabber___dafa888
                 panel4.Visible = true;
             }));
 
-            if (e.Address.ToString().Equals("http://sg88win.com/"))
+            if (e.Address.ToString().Equals(__root_url_equals))
             {
                 Invoke(new Action(() =>
                 {
@@ -633,8 +654,8 @@ namespace Odds_Grabber___dafa888
                             Invoke(new Action(() =>
                             {
                                 __is_login = false;
-                                args.Frame.ExecuteJavaScriptAsync("document.getElementsByName('user')[0].value = 'pippasue';");
-                                args.Frame.ExecuteJavaScriptAsync("document.getElementsByName('pwd')[0].value = 'AAaa1111';");
+                                args.Frame.ExecuteJavaScriptAsync("document.getElementsByName('user')[0].value = '" + __username + "';");
+                                args.Frame.ExecuteJavaScriptAsync("document.getElementsByName('pwd')[0].value = '" + __password + "';");
                                 args.Frame.ExecuteJavaScriptAsync("document.querySelector('#remoteloginformsubmit').click();");
                             }));
                         }
@@ -642,7 +663,7 @@ namespace Odds_Grabber___dafa888
                 }));
             }
 
-            if (e.Address.ToString().Equals("http://mem.sghuatchai.com/Member/?lang=en") || e.Address.ToString().Equals("http://mem.sghuatchai.com/Public/Maintenance"))
+            if (e.Address.ToString().Equals(__root_url_login) || e.Address.ToString().Equals("http://mem.sghuatchai.com/Public/Maintenance"))
             {
                 Invoke(new Action(() =>
                 {
@@ -708,7 +729,7 @@ namespace Odds_Grabber___dafa888
                 wc.Headers.Add("Content-Type", "application/x-www-form-urlencoded");
                 int _epoch = (int)(DateTime.UtcNow - new DateTime(1970, 1, 1)).TotalSeconds;
 
-                byte[] result = wc.DownloadData("https://hv.link333.com/odds/GetOtherSportOdds?=" + _epoch + "&uid=m0101nasrii042318&sportID=1&sortbyTime=false&leagues=&matches=&dateAdd=&oddsGroup=A&marketID=1&fixDate=true&lang=en");
+                byte[] result = wc.DownloadData(__DAFA_running + _epoch + "&uid=m0101nasrii042318&sportID=1&sortbyTime=false&leagues=&matches=&dateAdd=&oddsGroup=A&marketID=1&fixDate=true&lang=en");
                 string responsebody = Encoding.UTF8.GetString(result);
                 var deserialize_object = JsonConvert.DeserializeObject(responsebody);
                 JObject _jo = JObject.Parse(deserialize_object.ToString());
@@ -1052,7 +1073,7 @@ namespace Odds_Grabber___dafa888
                 wc.Headers.Add("Content-Type", "application/x-www-form-urlencoded");
                 int _epoch = (int)(DateTime.UtcNow - new DateTime(1970, 1, 1)).TotalSeconds;
 
-                byte[] result = wc.DownloadData("https://hv.link333.com/odds/GetOtherSportTodayOdds?=" + _epoch + "&uid=m0101nasrii042318&sportID=1&sortbyTime=false&leagues=&matches=&runningLeagues=&oddsGroup=A&lang=en");
+                byte[] result = wc.DownloadData(__DAFA_not_running + _epoch + "&uid=m0101nasrii042318&sportID=1&sortbyTime=false&leagues=&matches=&runningLeagues=&oddsGroup=A&lang=en");
                 string responsebody = Encoding.UTF8.GetString(result);
                 var deserialize_object = JsonConvert.DeserializeObject(responsebody);
                 JObject _jo = JObject.Parse(deserialize_object.ToString());
@@ -1312,7 +1333,7 @@ namespace Odds_Grabber___dafa888
                     }
                 }
 
-                // send ssports 
+                // send dafa 
                 if (Properties.Settings.Default.______odds_issend_01)
                 {
                     Properties.Settings.Default.______odds_issend_01 = false;
@@ -1475,6 +1496,13 @@ namespace Odds_Grabber___dafa888
                     return "0";
                 }
             }
+        }
+
+        // added settings
+        private void panel2_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            Form_Settings form_settings = new Form_Settings();
+            form_settings.ShowDialog();
         }
     }
 }

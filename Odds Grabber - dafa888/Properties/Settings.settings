@@ -46,5 +46,26 @@
     <Setting Name="______is_send_telegram" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="______root_url" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://sg88win.com/</Value>
+    </Setting>
+    <Setting Name="______root_url_equals" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://sg88win.com/</Value>
+    </Setting>
+    <Setting Name="______root_url_login" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://mem.sghuatchai.com/Member/?lang=en</Value>
+    </Setting>
+    <Setting Name="______DAFA_running" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://hv.link333.com/odds/GetOtherSportOdds?=</Value>
+    </Setting>
+    <Setting Name="______DAFA_not_running" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://hv.link333.com/odds/GetOtherSportTodayOdds?=</Value>
+    </Setting>
+    <Setting Name="______username" Type="System.String" Scope="User">
+      <Value Profile="(Default)">pippasue</Value>
+    </Setting>
+    <Setting Name="______password" Type="System.String" Scope="User">
+      <Value Profile="(Default)">AAaa1111</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -129,5 +129,89 @@ namespace Odds_Grabber___dafa888.Properties {
                 this["______is_send_telegram"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://sg88win.com/")]
+        public string ______root_url {
+            get {
+                return ((string)(this["______root_url"]));
+            }
+            set {
+                this["______root_url"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://sg88win.com/")]
+        public string ______root_url_equals {
+            get {
+                return ((string)(this["______root_url_equals"]));
+            }
+            set {
+                this["______root_url_equals"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://mem.sghuatchai.com/Member/?lang=en")]
+        public string ______root_url_login {
+            get {
+                return ((string)(this["______root_url_login"]));
+            }
+            set {
+                this["______root_url_login"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://hv.link333.com/odds/GetOtherSportOdds?=")]
+        public string ______DAFA_running {
+            get {
+                return ((string)(this["______DAFA_running"]));
+            }
+            set {
+                this["______DAFA_running"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://hv.link333.com/odds/GetOtherSportTodayOdds?=")]
+        public string ______DAFA_not_running {
+            get {
+                return ((string)(this["______DAFA_not_running"]));
+            }
+            set {
+                this["______DAFA_not_running"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("pippasue")]
+        public string ______username {
+            get {
+                return ((string)(this["______username"]));
+            }
+            set {
+                this["______username"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("AAaa1111")]
+        public string ______password {
+            get {
+                return ((string)(this["______password"]));
+            }
+            set {
+                this["______password"] = value;
+            }
+        }
     }
 }
